@@ -69,7 +69,7 @@ class TopicsController < ApplicationController
 
   def downvote
   @topic = Topic.find(params[:id])
-  @topic.votes.destroy
+  @topic.votes.first.destroy
   redirect_to(topics_path)
 end
 
@@ -81,6 +81,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:title)
+      params.require(:topic).permit(:title, :description)
     end
 end
